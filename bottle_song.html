@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>99 Bottles of Beer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f5f5f5;
+            padding: 50px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 36px;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        #lyrics {
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>99 Bottles of Beer</h1>
+    
+    <p>The Classic Counting Song</p>
+    
+    <div id="lyrics"></div>
+
+    <script>
+        var lyricsDiv = document.getElementById('lyrics');
+        var lyricsText = "";
+        
+        // Generate lyrics from 99 down to 0
+        for (var i = 99; i >= 0; i--) {
+            if (i > 0) {
+                lyricsText += i + " bottle" + (i !== 1 ? "s" : "") + " of beer on the wall, ";
+                lyricsText += i + " bottle" + (i !== 1 ? "s" : "") + " of beer.<br>";
+                lyricsText += "Take one down and pass it around, ";
+                
+                if (i - 1 > 0) {
+                    lyricsText += (i - 1) + " bottle" + (i - 1 !== 1 ? "s" : "") + " of beer on the wall.<br><br>";
+                } else {
+                    lyricsText += "no more bottles of beer on the wall.<br><br>";
+                }
+            } else {
+                lyricsText += "No more bottles of beer on the wall, no more bottles of beer.<br>";
+                lyricsText += "Go to the store and buy some more, 99 bottles of beer on the wall.";
+            }
+        }
+        
+        lyricsDiv.innerHTML = lyricsText;
+    </script>
+</body>
+</html>
