@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f5f5f5;
+            padding: 50px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 36px;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Verdana', sans-serif;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        #result {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-top: 30px;
+            font-family: 'Impact', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors Game</h1>
+    
+    <p>Rules: <a href="https://wrpsa.com/the-official-rules-of-rock-paper-scissors/" target="_blank">Click Here</a></p>
+    
+    <p>Choose your option:</p>
+    
+    <button onclick="playGame('Rock')">Rock</button>
+    <button onclick="playGame('Paper')">Paper</button>
+    <button onclick="playGame('Scissors')">Scissors</button>
+    
+    <p id="result"></p>
+
+    <script>
+        var roundsPlayed = 0;
+        var maxRounds = 3;
+        var gameOver = false;
+        
+        function playGame(userChoice) {
+            // Check if game is over
+            if (gameOver) {
+                alert("Game Over! Please refresh the page to play again.");
+                return;
+            }
+            
+            // Check if already played 3 rounds
+            if (roundsPlayed >= maxRounds) {
+                alert("You've already played 3 rounds! Game Over.");
+                return;
+            }
+            
+            //  Plus to round counter
+            roundsPlayed++;
+            
+            // Countdown
+            alert("3");
+            alert("2");
+            alert("1");
+            
+            // Generate computer choice (fresh random each time)
+            var choices = ['Rock', 'Paper', 'Scissors'];
+            var computerChoice = choices[Math.floor(Math.random() * 3)];
+            
+            // Show choices
+            alert("Round " + roundsPlayed + " of " + maxRounds + "\nYou chose: " + userChoice + "\nComputer chose: " + computerChoice);
+            
+            // Determine winner
+            var result = "";
+            
+            if (userChoice === computerChoice) {
+                result = "Round " + roundsPlayed + ": It's a Tie!";
+            } else if (
+                (userChoice === 'Rock' && computerChoice === 'Scissors') ||
+                (userChoice === 'Paper' && computerChoice === 'Rock') ||
+                (userChoice === 'Scissors' && computerChoice === 'Paper')
+            ) {
+                result = "Round " + roundsPlayed + ": You Win!";
+                gameOver = true; // Stop the game if user wins
+            } else {
+                result = "Round " + roundsPlayed + ": You Lose!";
+            }
+            
+            // Display result
+            alert(result);
+            document.getElementById('result').innerHTML = result;
+            
+            // Check if game should end
+            if (gameOver) {
+                alert("Congratulations! You won! Game Over.");
+            } else if (roundsPlayed >= maxRounds) {
+                alert("You've played all 3 rounds! Game Over.");
+                gameOver = true;
+            }
+        }
+    </script>
+</body>
+</html>
